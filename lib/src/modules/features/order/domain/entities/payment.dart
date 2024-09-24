@@ -1,10 +1,24 @@
 import 'package:equatable/equatable.dart';
+import 'package:hive/hive.dart';
 
+part '../../../../../shared/hive/generator/payment.g.dart';
+
+@HiveType(typeId: 5)
 class Payment extends Equatable {
+
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final int installmentQuantity;
+
+  @HiveField(2)
   final double value;
+
+  @HiveField(3)
   final String code;
+
+  @HiveField(4)
   final String title;
 
   const Payment({
