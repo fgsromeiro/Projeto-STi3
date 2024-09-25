@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/item.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/item.dart';
 
 class ItemModel extends Item {
   const ItemModel({

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/client.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/client.dart';
 
 class ClientModel extends Client {
   const ClientModel({

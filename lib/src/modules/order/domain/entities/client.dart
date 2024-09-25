@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-part '../../../../../shared/hive/generator/client.g.dart';
+part '../../../../shared/hive/generator/client.g.dart';
 
 @HiveType(typeId: 2)
 class Client extends Equatable {

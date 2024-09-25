@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:projeto_sti3/src/modules/features/order/data/datasources/order_local_data_source.dart';
-import 'package:projeto_sti3/src/modules/features/order/data/datasources/order_remote_data_source.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/order.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/repositories/order_repository.dart';
+import 'package:projeto_sti3/src/modules/order/data/datasources/order_local_data_source.dart';
+import 'package:projeto_sti3/src/modules/order/data/datasources/order_remote_data_source.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
+import 'package:projeto_sti3/src/modules/order/domain/repositories/order_repository.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrderLocalDataSource localDataSource;

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/address.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/address.dart';
 
 class AdressModel extends Address {
   const AdressModel({

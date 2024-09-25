@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:get_it/get_it.dart';
-import 'package:projeto_sti3/src/modules/features/order/data/models/order_model.dart';
+import 'package:projeto_sti3/src/modules/order/data/models/order_model.dart';
 import 'package:projeto_sti3/src/shared/domain/exceptions.dart';
 import 'package:projeto_sti3/src/shared/interface/base_exception.dart';
 import 'package:projeto_sti3/src/shared/interface/http_adapter.dart';

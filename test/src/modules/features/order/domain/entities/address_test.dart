@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/address.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/address.dart';
 
 void main() {
   group('Address', () {

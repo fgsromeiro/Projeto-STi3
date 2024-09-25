@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:projeto_sti3/src/modules/features/order/data/models/adress_model.dart';
-import 'package:projeto_sti3/src/modules/features/order/data/models/client_model.dart';
-import 'package:projeto_sti3/src/modules/features/order/data/models/item_model.dart';
-import 'package:projeto_sti3/src/modules/features/order/data/models/payment_model.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/order.dart';
+import 'package:projeto_sti3/src/modules/order/data/models/adress_model.dart';
+import 'package:projeto_sti3/src/modules/order/data/models/client_model.dart';
+import 'package:projeto_sti3/src/modules/order/data/models/item_model.dart';
+import 'package:projeto_sti3/src/modules/order/data/models/payment_model.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
 
 class OrderModel extends Order {
   const OrderModel({

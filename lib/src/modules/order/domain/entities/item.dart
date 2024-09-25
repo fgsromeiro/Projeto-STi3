@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 
-part '../../../../../shared/hive/generator/item.g.dart';
+part '../../../../shared/hive/generator/item.g.dart';
 
 @HiveType(typeId: 3)
 class Item extends Equatable {

@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/payment.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/payment.dart';
 
 class PaymentModel extends Payment {
   const PaymentModel(

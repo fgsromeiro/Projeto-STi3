@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/address.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/client.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/item.dart';
-import 'package:projeto_sti3/src/modules/features/order/domain/entities/payment.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/address.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/client.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/item.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/payment.dart';
 
-part '../../../../../shared/hive/generator/order.g.dart';
+part '../../../../shared/hive/generator/order.g.dart';
 
 @HiveType(typeId: 4)
 class Order extends Equatable {
