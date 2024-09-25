@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/pages/order_screen.dart';
-import 'package:projeto_sti3/src/modules/report/presentation/pages/report_screen.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,16 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   final List<Widget> _pages = [
-    Center(
-      child: Opacity(
-        opacity: 0.5,
-        child: Image.asset(
-          'assets/images/logo.png',
-        ),
-      ),
-    ),
+    // Center(
+    //   child: Opacity(
+    //     opacity: 0.5,
+    //     child: Image.asset(
+    //       'assets/images/logo.png',
+    //     ),
+    //   ),
+    // ),
     const OrderScreen(),
-    const ReportScreen(),
+    // const ReportScreen(),
   ];
 
   final List<String> _titles = [
@@ -83,13 +82,15 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Scaffold(
-              backgroundColor: Styles.tertiary,
-              body: IndexedStack(
-                index: _selectedIndex,
-                children: _pages,
-              ))),
+        padding: const EdgeInsets.all(15),
+        child: Scaffold(
+          backgroundColor: Styles.tertiary,
+          body: IndexedStack(
+            index: _selectedIndex,
+            children: _pages,
+          ),
+        ),
+      ),
     );
   }
 }
