@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_details_widget.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_table_widget.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
@@ -85,10 +86,10 @@ class OrderScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                   SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: OrderTableWidget(),
                   )
                 ],
@@ -96,32 +97,7 @@ class OrderScreen extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Expanded(
-              flex: 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Column(
-                  children: [
-                    Container(
-                      color: Styles.primary,
-                      alignment: Alignment.center,
-                      height: 30,
-                      width: double.infinity,
-                      child: Text(
-                        'Detalhes do Pedido',
-                        style: TextStyle(color: Styles.tertiary, fontSize: 13),
-                      ),
-                    ),
-                    const Expanded(
-                      child: Center(
-                        child: Text(
-                          'Nenhum pedido selecionado',
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ))
+          const Expanded(flex: 2, child: OrderDetailsWidget())
         ],
       ),
     );
