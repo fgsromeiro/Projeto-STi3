@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get_it/get_it.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/order_model.dart';
 import 'package:projeto_sti3/src/shared/domain/exceptions.dart';
@@ -15,12 +13,10 @@ abstract class OrderRemoteDataSource {
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
   final HttpAdapter httpAdapter;
   final NetworkInfo networkInfo;
-  final Constants constants;
 
   OrderRemoteDataSourceImpl({
     required this.httpAdapter,
     required this.networkInfo,
-    required this.constants,
   });
 
   @override
@@ -31,7 +27,7 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
         ConnectionInvalidException('Sem conexão com a internet'),
       );
 
-      final result = await httpAdapter.get(constants.baseUrl);
+      final result = await httpAdapter.get(Constants.baseUrl);
 
       if (result.values.isNotEmpty) {
         return List<OrderModel>.from(result as List)

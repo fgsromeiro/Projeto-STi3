@@ -1,5 +1,5 @@
 class Constants {
-  String baseUrl = 'https://desafiotecnicosti3.azurewebsites.net/pedido';
+  static String baseUrl = 'https://desafiotecnicosti3.azurewebsites.net/pedido';
 
-  String kOrderBox = 'orderBox';
+  static String kOrderBox = 'orderBox';
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_ructors_first
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
@@ -62,51 +62,51 @@ class OrderDetailsWidget extends StatelessWidget {
                             color: Styles.primary,
                           ),
                         ),
-                        const Text(
-                          'Número: 0010',
-                          style: TextStyle(
+                        Text(
+                          'Número: ${order!.id}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Data Criação: 09/02/2021',
-                          style: TextStyle(
+                        Text(
+                          'Data Criação: ${order!.creationDate}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Data Alteração: 12/02/2021',
-                          style: TextStyle(
+                        Text(
+                          'Data Alteração: ${order!.modificationDate}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Status: APROVADO',
-                          style: TextStyle(
+                        Text(
+                          'Status: ${order!.status}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Desconto: R\$ 40.00',
-                          style: TextStyle(
+                        Text(
+                          'Desconto: R\$ ${order!.discount}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Frete: R\$ 15.00',
-                          style: TextStyle(
+                        Text(
+                          'Frete: R\$ ${order!.freight}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'SubTotal: R\$ 580.00',
-                          style: TextStyle(
+                        Text(
+                          'SubTotal: R\$ ${order!.subTotal}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Total: R\$ 555.00',
-                          style: TextStyle(
+                        Text(
+                          'Total: R\$ ${order!.totalValue}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
@@ -126,27 +126,27 @@ class OrderDetailsWidget extends StatelessWidget {
                             color: Styles.primary,
                           ),
                         ),
-                        const Text(
-                          'Cliente: Barry Allen',
-                          style: TextStyle(
+                        Text(
+                          'Cliente: ${order!.client.name}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Documento: 68471698005',
-                          style: TextStyle(
+                        Text(
+                          'Documento: ${order!.client.cpf}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Data Nascimento: 19/02/1996',
-                          style: TextStyle(
+                        Text(
+                          'Data Nascimento: ${order!.client.dateBirth}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'E-mail: theflash@teamflash.com.br',
-                          style: TextStyle(
+                        Text(
+                          'E-mail: ${order!.client.email}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
@@ -166,51 +166,51 @@ class OrderDetailsWidget extends StatelessWidget {
                             color: Styles.primary,
                           ),
                         ),
-                        const Text(
-                          'Endereço: Star Labs',
-                          style: TextStyle(
+                        Text(
+                          'Endereço: ${order!.deliveryAddress.street}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Número: 01',
-                          style: TextStyle(
+                        Text(
+                          'Número: ${order!.deliveryAddress.number}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'CEP: 00000000',
-                          style: TextStyle(
+                        Text(
+                          'CEP: ${order!.deliveryAddress.postCode}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Bairro: Midtown',
-                          style: TextStyle(
+                        Text(
+                          'Bairro: ${order!.deliveryAddress.district}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Cidade: Central City',
-                          style: TextStyle(
+                        Text(
+                          'Cidade: ${order!.deliveryAddress.city}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Estado: KS',
-                          style: TextStyle(
+                        Text(
+                          'Estado: ${order!.deliveryAddress.state}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Complemento:',
-                          style: TextStyle(
+                        Text(
+                          'Complemento: ${order!.deliveryAddress.complement}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
-                        const Text(
-                          'Referência:',
-                          style: TextStyle(
+                        Text(
+                          'Referência: ${order!.deliveryAddress.reference}',
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),

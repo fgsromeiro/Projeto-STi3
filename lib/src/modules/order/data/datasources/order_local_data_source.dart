@@ -11,17 +11,15 @@ abstract class OrderLocalDataSource {
 
 class OrderLocalDataSourceImpl implements OrderLocalDataSource {
   final HiveService hiveService;
-  final Constants constants;
 
   OrderLocalDataSourceImpl({
     required this.hiveService,
-    required this.constants,
   });
 
   @override
   Future<List<Order>> getAll() async {
     try {
-      return hiveService.loadAll(constants.kOrderBox);
+      return hiveService.loadAll(Constants.kOrderBox);
     } on BaseException {
       rethrow;
     }
@@ -31,7 +29,7 @@ class OrderLocalDataSourceImpl implements OrderLocalDataSource {
   Future<void> insert(List<Order> listOfOrders) async {
     try {
       for (var order in listOfOrders) {
-        hiveService.insert(order.id, order, constants.kOrderBox);
+        hiveService.insert(order.id, order, Constants.kOrderBox);
       }
 
       return;

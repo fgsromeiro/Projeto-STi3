@@ -1,16 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
 import 'package:projeto_sti3/src/ui/app_table.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:projeto_sti3/src/utils/utils.dart';
 
-class OrderTableWidget extends StatefulWidget {
-  const OrderTableWidget({super.key});
+class OrderTableWidget extends StatelessWidget {
+  const OrderTableWidget({
+    super.key,
+    required this.listOfOrders,
+    required this.onTap,
+  });
 
-  @override
-  State<OrderTableWidget> createState() => _OrderTableWidgetState();
-}
+  final List<Order> listOfOrders;
+  final VoidCallback onTap;
 
-class _OrderTableWidgetState extends State<OrderTableWidget> {
   @override
   Widget build(BuildContext context) {
     return AppTable(columns: const [
@@ -20,25 +24,31 @@ class _OrderTableWidgetState extends State<OrderTableWidget> {
       'STATUS',
       'VALOR TOTAL',
     ], rows: [
-      Utils.tableRowChild(
-        context,
-        '0001',
-        'Quinta-Feira, 30 Março 2024',
-        'Barry Allen',
-        'APROVADO',
-        'R\$ 304,55',
-        () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => _buildModal(context),
+      ...List.generate(
+        listOfOrders.length,
+        (index) {
+          return Utils.tableRowChild(
+            context,
+            listOfOrders[index].id,
+            listOfOrders[index].creationDate,
+            listOfOrders[index].client.name,
+            listOfOrders[index].status,
+            'R\$ ${listOfOrders[index].totalValue}',
+            onTap,
+            () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) =>
+                    _buildModal(context, listOfOrders[index]),
+              );
+            },
           );
         },
-        () {},
       )
     ]);
   }
 
-  Widget _buildModal(BuildContext context) {
+  Widget _buildModal(BuildContext context, Order order) {
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
@@ -84,45 +94,51 @@ class _OrderTableWidgetState extends State<OrderTableWidget> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: AppTable(rows: [
-                          TableRow(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(color: Styles.base))),
-                            children: [
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                onTap: () {},
-                                child: const Center(
-                                  child: Text(
-                                    'Agasalho SHUIELD',
-                                    style: TextStyle(fontSize: 13),
+                          ...List.generate(
+                            order.itens.length,
+                            (index) {
+                              return TableRow(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom:
+                                            BorderSide(color: Styles.base))),
+                                children: [
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    onTap: () {},
+                                    child: Center(
+                                      child: Text(
+                                        order.itens[index].title,
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                onTap: () {},
-                                child: const Center(
-                                  child: Text(
-                                    '1',
-                                    style: TextStyle(fontSize: 13),
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    onTap: () {},
+                                    child: Center(
+                                      child: Text(
+                                        order.itens[index].quantity.toString(),
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                onTap: () {},
-                                child: const Center(
-                                  child: Text(
-                                    'R\$ 295,25',
-                                    style: TextStyle(fontSize: 13),
-                                  ),
-                                ),
-                              )
-                            ],
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    onTap: () {},
+                                    child: Center(
+                                      child: Text(
+                                        'R\$ ${order.itens[index].unitValue}',
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              );
+                            },
                           ),
                         ], columns: const [
                           'PRODUTO',
@@ -135,43 +151,51 @@ class _OrderTableWidgetState extends State<OrderTableWidget> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: AppTable(rows: [
-                          TableRow(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(color: Styles.base))),
-                            children: [
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                onTap: () {},
-                                child: const Center(
-                                  child: Text(
-                                    'BOLETO',
-                                    style: TextStyle(fontSize: 13),
+                          ...List.generate(
+                            listOfOrders.length,
+                            (index) {
+                              return TableRow(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                        bottom:
+                                            BorderSide(color: Styles.base))),
+                                children: [
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    onTap: () {},
+                                    child: Center(
+                                      child: Text(
+                                        order.payments[index].title,
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                child: const Center(
-                                  child: Text(
-                                    '1',
-                                    style: TextStyle(fontSize: 13),
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    child: Center(
+                                      child: Text(
+                                        order
+                                            .payments[index].installmentQuantity
+                                            .toString(),
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              TableRowInkWell(
-                                overlayColor: WidgetStatePropertyAll<Color>(
-                                    Styles.primary),
-                                child: const Center(
-                                  child: Text(
-                                    'R\$ 295,25',
-                                    style: TextStyle(fontSize: 13),
+                                  TableRowInkWell(
+                                    overlayColor: WidgetStatePropertyAll<Color>(
+                                        Styles.primary),
+                                    child: Center(
+                                      child: Text(
+                                        'R\$ ${order.payments[index].value}',
+                                        style: const TextStyle(fontSize: 13),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ],
+                                ],
+                              );
+                            },
                           )
                         ], columns: const [
                           'PAGAMENTO',

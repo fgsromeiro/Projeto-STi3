@@ -3,8 +3,27 @@ import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_detail
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_table_widget.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
+
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  late final TextEditingController controller;
+
+  @override
+  void initState() {
+    controller = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +47,10 @@ class OrderScreen extends StatelessWidget {
                             textCapitalization: TextCapitalization.sentences,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
-                            // scrollPadding: const EdgeInsets.only(bottom: 200),
                             cursorColor: Styles.primary,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            // controller: _controller,
-                            // validator: widget.onValidator,
+                            controller: controller,
                             decoration: const InputDecoration(
                               hintText: 'Pesquise pelo nome do Cliente',
                               hintStyle: TextStyle(fontSize: 13),
@@ -89,8 +106,11 @@ class OrderScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Expanded(
-                    child: OrderTableWidget(),
+                  Expanded(
+                    child: OrderTableWidget(
+                      listOfOrders: const [],
+                      onTap: () {},
+                    ),
                   )
                 ],
               )),
