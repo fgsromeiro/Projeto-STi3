@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_sti3/src/ui/app_table.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
+import 'package:projeto_sti3/src/utils/utils.dart';
 
 class OrderTableWidget extends StatefulWidget {
   const OrderTableWidget({super.key});
@@ -11,86 +13,180 @@ class OrderTableWidget extends StatefulWidget {
 class _OrderTableWidgetState extends State<OrderTableWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: DataTable(
-        showCheckboxColumn: false,
-        dataRowMaxHeight: 30,
-        dataRowMinHeight: 30,
-        dataRowColor:
-            WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-          if (states.contains(WidgetState.hovered)) {
-            return const Color.fromARGB(255, 186, 225, 230);
-          } else {
-            return null;
-          }
-        }),
-        decoration: BoxDecoration(
-            border: Border.all(
-          color: const Color.fromARGB(255, 177, 177, 177),
-        )),
-        headingRowHeight: 30,
-        columns: [
-          _tableColumn('NÚMERO', isBold: true),
-          _tableColumn('DATA', isBold: true),
-          _tableColumn('CLIENTE', isBold: true),
-          _tableColumn('STATUS', isBold: true),
-          _tableColumn('VALOR TOTAL', isBold: true),
-        ],
-        rows: [
-          _tableRow(),
-          _tableRow(),
-        ],
+    return AppTable(columns: const [
+      'NÚMERO',
+      'DATA',
+      'CLIENTE',
+      'STATUS',
+      'VALOR TOTAL',
+    ], rows: [
+      Utils.tableRowChild(
+        context,
+        '0001',
+        'Quinta-Feira, 30 Março 2024',
+        'Barry Allen',
+        'APROVADO',
+        'R\$ 304,55',
+        () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => _buildModal(context),
+          );
+        },
+        () {},
+      )
+    ]);
+  }
+
+  Widget _buildModal(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0),
+      ),
+      child: SizedBox(
+        height: Utils.heightSize(context) * 0.8,
+        width: Utils.widthSize(context) * 0.8,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: 30,
+                  color: Styles.primary,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'DETALHES DO PEDIDO',
+                        style: TextStyle(fontSize: 13, color: Styles.tertiary),
+                      ),
+                      IconButton(
+                        style:
+                            ElevatedButton.styleFrom(padding: EdgeInsets.zero),
+                        onPressed: () => Navigator.pop(context),
+                        icon: Icon(
+                          Icons.close,
+                          color: Styles.tertiary,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: AppTable(rows: [
+                          TableRow(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Styles.base))),
+                            children: [
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                onTap: () {},
+                                child: const Center(
+                                  child: Text(
+                                    'Agasalho SHUIELD',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                onTap: () {},
+                                child: const Center(
+                                  child: Text(
+                                    '1',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                onTap: () {},
+                                child: const Center(
+                                  child: Text(
+                                    'R\$ 295,25',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ], columns: const [
+                          'PRODUTO',
+                          'QNTD',
+                          'VALOR UNIT.'
+                        ]),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: AppTable(rows: [
+                          TableRow(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Styles.base))),
+                            children: [
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                onTap: () {},
+                                child: const Center(
+                                  child: Text(
+                                    'BOLETO',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                child: const Center(
+                                  child: Text(
+                                    '1',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                              TableRowInkWell(
+                                overlayColor: WidgetStatePropertyAll<Color>(
+                                    Styles.primary),
+                                child: const Center(
+                                  child: Text(
+                                    'R\$ 295,25',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ], columns: const [
+                          'PAGAMENTO',
+                          'PARCELA',
+                          'VALOR'
+                        ]),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
-  }
-
-  DataColumn _tableColumn(String title, {isBold = false}) {
-    return DataColumn(
-        headingRowAlignment: MainAxisAlignment.center,
-        label: Text(
-          title,
-          style: TextStyle(
-              fontWeight: isBold ? FontWeight.bold : null, fontSize: 13),
-        ));
-  }
-
-  DataRow _tableRow() {
-    return DataRow(
-      selected: false,
-      onSelectChanged: (value) {},
-      cells: const [
-        DataCell(Center(
-            child: Text(
-          '00001',
-          style: TextStyle(
-            fontSize: 13,
-          ),
-        ))),
-        DataCell(
-          Center(
-              child: Text('Quinta-Feira, 25 Setembro 2020',
-                  style: TextStyle(fontSize: 13))),
-        ),
-        DataCell(
-          Center(child: Text('Barry Allen', style: TextStyle(fontSize: 13))),
-        ),
-        DataCell(
-          Center(child: Text('APROVADO', style: TextStyle(fontSize: 13))),
-        ),
-        DataCell(
-          Center(child: Text('R\$ 305,25', style: TextStyle(fontSize: 13))),
-        ),
-      ],
-    );
-  }
-
-  Color _getTextColor() {
-    // Retorna a cor do texto com base no estado do hover
-    if (context.findAncestorStateOfType<_OrderTableWidgetState>()?.mounted ??
-        false) {
-      return Styles.tertiary; // cor para o texto quando a linha está em hover
-    }
-    return Colors.black; // cor padrão do texto
   }
 }
