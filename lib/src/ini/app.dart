@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/home/presentation/pages/home_screen.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/pages/order_screen.dart';
+import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
 import 'package:projeto_sti3/src/modules/report/presentation/pages/report_screen.dart';
+import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -10,14 +12,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/reports': (context) => const ReportScreen(),
-        '/orders': (context) => const OrderScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create:(context) =>  OrderProvider(),)
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/reports': (context) => const ReportScreen(),
+          '/orders': (context) => const OrderScreen(),
+        },
+      ),
     );
   }
 }
