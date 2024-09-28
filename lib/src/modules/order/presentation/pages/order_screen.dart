@@ -30,7 +30,6 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   Widget build(BuildContext context) {
     return Consumer<OrderProvider>(
-      
       builder: (context, provider, child) {
         if (provider.isRequestCompleted) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -41,9 +40,9 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
             );
           });
-        } else if (!provider.isRequestCompleted && provider.errorMessage != null){
-
-WidgetsBinding.instance.addPostFrameCallback((_) {
+        } else if (!provider.isRequestCompleted &&
+            provider.errorMessage != null) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(provider.errorMessage!),
@@ -72,28 +71,36 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                               child: TextFormField(
                                 textCapitalization:
                                     TextCapitalization.sentences,
+                                    onFieldSubmitted: (value) => Provider.of<OrderProvider>(context,
+                                          listen: false)
+                                      .search(
+                                    value,
+                                  ),
                                 onTapOutside: (event) =>
                                     FocusScope.of(context).unfocus(),
                                 cursorColor: Styles.primary,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
+                                cursorHeight: 13,
+                                style: const TextStyle(fontSize: 13),
                                 controller: controller,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 0,
+                                    horizontal: 10,
+                                  ),
                                   hintText: 'Pesquise pelo nome do Cliente',
-                                  hintStyle: TextStyle(fontSize: 13),
+                                  hintStyle: const TextStyle(fontSize: 13),
                                   filled: true,
                                   fillColor: Colors.transparent,
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Colors.grey, width: 1),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(0)),
+                                        color: Styles.primary, width: 1),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Colors.grey,
                                     ),
-                                    // borderRadius: BorderRadius.all(Radius.circular(20)),
                                   ),
                                   errorMaxLines: 2,
                                 ),
@@ -107,7 +114,13 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
                                     backgroundColor: Styles.primary),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Provider.of<OrderProvider>(context,
+                                          listen: false)
+                                      .search(
+                                    controller.text,
+                                  );
+                                },
                                 child: Text(
                                   'Pesquisar',
                                   style: TextStyle(
@@ -122,7 +135,9 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                                         borderRadius: BorderRadius.circular(5)),
                                     backgroundColor: Styles.primary),
                                 onPressed: () {
-                                  Provider.of<OrderProvider>(context, listen: false).sync();
+                                  Provider.of<OrderProvider>(context,
+                                          listen: false)
+                                      .sync();
                                 },
                                 child: Text(
                                   'Sincronizar',
@@ -137,7 +152,7 @@ WidgetsBinding.instance.addPostFrameCallback((_) {
                       ),
                       Expanded(
                         child: OrderTableWidget(
-                          listOfOrders: const [],
+                          listOfOrders: provider.listOfOrder,
                           onTap: () {},
                         ),
                       )

@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extensions_integer.dart';
 import 'package:projeto_sti3/src/ui/app_table.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:projeto_sti3/src/utils/utils.dart';
@@ -27,14 +28,17 @@ class OrderTableWidget extends StatelessWidget {
       ...List.generate(
         listOfOrders.length,
         (index) {
+          final order = listOfOrders[index];
+
           return Utils.tableRowChild(
             context,
-            listOfOrders[index].id,
-            listOfOrders[index].creationDate,
-            listOfOrders[index].client.name,
-            listOfOrders[index].status,
-            'R\$ ${listOfOrders[index].totalValue}',
+            order.numberOrder.toFiveDigits(),
+            Utils.formatDate(order.creationDate),
+            order.client.name,
+            order.status,
+            Utils.formatMoney(order.totalValue),
             onTap,
+            colorRow: order.status == 'CANCELADO' ? Colors.red : Colors.black,
             () {
               showDialog(
                 context: context,
@@ -107,11 +111,9 @@ class OrderTableWidget extends StatelessWidget {
                                     overlayColor: WidgetStatePropertyAll<Color>(
                                         Styles.primary),
                                     onTap: () {},
-                                    child: Center(
-                                      child: Text(
-                                        order.itens[index].title,
-                                        style: const TextStyle(fontSize: 13),
-                                      ),
+                                    child: Text(
+                                      order.itens[index].title,
+                                      style: const TextStyle(fontSize: 13),
                                     ),
                                   ),
                                   TableRowInkWell(

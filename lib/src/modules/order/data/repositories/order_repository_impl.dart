@@ -25,4 +25,9 @@ class OrderRepositoryImpl implements OrderRepository {
   Future<void> _addLocal(List<Order> listOfOrders) async {
     await localDataSource.insert(listOfOrders);
   }
+
+  @override
+  Future<List<Order>> getAll() async {
+    return await localDataSource.getAll();
+  }
 }

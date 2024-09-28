@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
 class Utils {
@@ -7,16 +8,34 @@ class Utils {
   static double widthSize(BuildContext context) =>
       MediaQuery.of(context).size.width;
 
+  static String formatMoney(double value) {
+    final NumberFormat formatter =
+        NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
+    return formatter.format(value);
+  }
+
+  static String formatDate(String dateStr) {
+    DateTime date = DateTime.parse(dateStr);
+
+    String formattedDate =
+        DateFormat('EEEE, dd MMMM yyyy', 'pt_BR').format(date);
+
+    String capitalizedDate =
+        "${formattedDate[0].toUpperCase()}${formattedDate.substring(1)}";
+
+    return capitalizedDate;
+  }
+
   static TableRow tableRowChild(
-    BuildContext context,
-    String id,
-    String date,
-    String client,
-    String status,
-    String value,
-    VoidCallback? onTap,
-    VoidCallback? onDoubleTap,
-  ) {
+      BuildContext context,
+      String id,
+      String date,
+      String client,
+      String status,
+      String value,
+      VoidCallback? onTap,
+      VoidCallback? onDoubleTap,
+      {Color colorRow = Colors.black}) {
     return TableRow(
       decoration:
           BoxDecoration(border: Border(bottom: BorderSide(color: Styles.base))),
@@ -28,7 +47,10 @@ class Utils {
           child: Center(
             child: Text(
               id,
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(
+                fontSize: 13,
+                color: colorRow,
+              ),
             ),
           ),
         ),
@@ -36,10 +58,14 @@ class Utils {
           overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
-          child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               date,
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(
+                fontSize: 13,
+                color: colorRow,
+              ),
             ),
           ),
         ),
@@ -47,10 +73,14 @@ class Utils {
           overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
-          child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               client,
-              style: const TextStyle(),
+              style: TextStyle(
+                fontSize: 13,
+                color: colorRow,
+              ),
             ),
           ),
         ),
@@ -61,7 +91,10 @@ class Utils {
           child: Center(
             child: Text(
               status,
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(
+                fontSize: 13,
+                color: colorRow,
+              ),
             ),
           ),
         ),
@@ -72,7 +105,10 @@ class Utils {
           child: Center(
             child: Text(
               value,
-              style: const TextStyle(fontSize: 13),
+              style: TextStyle(
+                fontSize: 13,
+                color: colorRow,
+              ),
             ),
           ),
         ),

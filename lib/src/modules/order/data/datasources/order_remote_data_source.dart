@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get_it/get_it.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/order_model.dart';
 import 'package:projeto_sti3/src/shared/domain/exceptions.dart';
@@ -29,11 +31,11 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
       final result = await httpAdapter.get(Constants.baseUrl);
 
-      if (result.values.isNotEmpty) {
-        return List<OrderModel>.from(result as List)
-            .map(
-              (e) => OrderModel.fromMap(e as Map<String, dynamic>),
-            )
+      final listOfMapResponse = jsonDecode(result) as List;
+
+      if (listOfMapResponse.isNotEmpty) {
+        return listOfMapResponse
+            .map((e) => OrderModel.fromMap(e as Map<String, dynamic>))
             .toList();
       }
 

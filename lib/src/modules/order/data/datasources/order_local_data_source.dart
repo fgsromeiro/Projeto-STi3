@@ -19,7 +19,7 @@ class OrderLocalDataSourceImpl implements OrderLocalDataSource {
   @override
   Future<List<Order>> getAll() async {
     try {
-      return hiveService.loadAll(Constants.kOrderBox);
+      return await hiveService.loadAll(Constants.kOrderBox);
     } on BaseException {
       rethrow;
     }

@@ -1,3 +1,3 @@
 abstract class HttpAdapter {
-  Future<Map<String, dynamic>> get(String url);
+  Future<String> get(String url);
 }

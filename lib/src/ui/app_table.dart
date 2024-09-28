@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
+import 'package:projeto_sti3/src/utils/utils.dart';
 
 class AppTable extends StatelessWidget {
-  AppTable({
+  const AppTable({
     super.key,
     required this.rows,
     required this.columns,
@@ -10,7 +11,6 @@ class AppTable extends StatelessWidget {
 
   final List<String> columns;
   final List<TableRow> rows;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class AppTable extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(border: Border.all(color: Styles.base)),
       child: Table(
-        columnWidths: const {
-          0: FlexColumnWidth(),
-          1: FlexColumnWidth(),
-          2: FlexColumnWidth(),
-          3: FlexColumnWidth(),
-          4: FlexColumnWidth(),
+        columnWidths: {
+          0: FlexColumnWidth(Utils.widthSize(context) * 0.00015),
+          1: FlexColumnWidth(Utils.widthSize(context) * 0.0004),
+          2: const FlexColumnWidth(),
+          3: FlexColumnWidth(Utils.widthSize(context) * 0.00015),
+          4: FlexColumnWidth(Utils.widthSize(context) * 0.0002),
         },
         children: [
           _tableRowHeader(context, columns.length, columns),
@@ -46,8 +46,9 @@ class AppTable extends StatelessWidget {
         child: Text(
           value,
           style: TextStyle(
-              fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
-              fontSize: 13),
+            fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
+            fontSize: 13,
+          ),
         ),
       ),
     );

@@ -4,6 +4,7 @@ import 'package:projeto_sti3/src/modules/order/data/datasources/order_local_data
 import 'package:projeto_sti3/src/modules/order/data/datasources/order_remote_data_source.dart';
 import 'package:projeto_sti3/src/modules/order/data/repositories/order_repository_impl.dart';
 import 'package:projeto_sti3/src/modules/order/domain/repositories/order_repository.dart';
+import 'package:projeto_sti3/src/modules/order/domain/usecases/gell_all_order_use_case.dart';
 import 'package:projeto_sti3/src/modules/order/domain/usecases/sync_order_use_case.dart';
 import 'package:projeto_sti3/src/shared/domain/http_client.dart';
 import 'package:projeto_sti3/src/shared/domain/network_info_impl.dart';
@@ -39,6 +40,10 @@ void _setupModuleOrder() {
   dependencyAssembly
     ..registerLazySingleton<SyncOrderUseCase>(
       () => SyncOrderUseCase(repository: dependencyAssembly()),
+    )
+
+    ..registerLazySingleton<GetAllOrderUseCase>(
+      () => GetAllOrderUseCase(repository: dependencyAssembly()),
     )
 
     // Repository

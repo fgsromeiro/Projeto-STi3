@@ -5,6 +5,7 @@ import 'package:projeto_sti3/src/modules/order/data/models/client_model.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/item_model.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/payment_model.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extensions_integer.dart';
 
 class OrderModel extends Order {
   const OrderModel({
@@ -59,28 +60,24 @@ class OrderModel extends Order {
     var listOfPayment = <PaymentModel>[];
 
     if (map['itens'] != null) {
-      listOfItem = List<ItemModel>.of(
-        (map['itens'] as List)
-            .map(
-              (item) => ItemModel.fromMap(map),
-            )
-            .toList(),
-      );
+      listOfItem = (map['itens'] as List)
+          .map(
+            (item) => ItemModel.fromMap(item),
+          )
+          .toList();
     }
 
     if (map['pagamento'] != null) {
-      listOfPayment = List<PaymentModel>.of(
-        (map['pagamento'] as List)
-            .map(
-              (item) => PaymentModel.fromMap(map),
-            )
-            .toList(),
-      );
+      listOfPayment = (map['pagamento'] as List)
+          .map(
+            (payment) => PaymentModel.fromMap(payment),
+          )
+          .toList();
     }
 
     return OrderModel(
       id: map['id'] != null ? map['id'] as String : '',
-      numberOrder: map['numero'] != null ? map['numero'] as int : 0,
+      numberOrder: map['numero'] != null ? (map['numero'] as int) : 0,
       creationDate:
           map['dataCriacao'] != null ? map['dataCriacao'] as String : '',
       modificationDate:
