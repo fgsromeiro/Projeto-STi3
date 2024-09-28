@@ -21,39 +21,49 @@ class OrderTableWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppTable(columns: const [
-      'NÚMERO',
-      'DATA',
-      'CLIENTE',
-      'STATUS',
-      'VALOR TOTAL',
-    ], rows: [
-      ...List.generate(
-        listOfOrders.length,
-        (index) {
-          final order = listOfOrders[index];
+    return AppTable(
+      columns: const [
+        'NÚMERO',
+        'DATA',
+        'CLIENTE',
+        'STATUS',
+        'VALOR TOTAL',
+      ],
+      rows: [
+        ...List.generate(
+          listOfOrders.length,
+          (index) {
+            final order = listOfOrders[index];
 
-          return Utils.tableRowChild(
-            context,
-            order.numberOrder.toFiveDigits(),
-            order.creationDate.toDate().formatDateCapitalize(),
-            order.client.name,
-            order.status,
-            order.totalValue.formatMoney(),
-            () => Provider.of<OrderProvider>(listen: false, context)
-                .onSelected(order),
-            colorRow: order.status == 'CANCELADO' ? Colors.red : Colors.black,
-            () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) =>
-                    _buildModal(context, listOfOrders[index]),
-              );
-            },
-          );
-        },
-      )
-    ]);
+            return Utils.tableRowChild(
+              context,
+              order.numberOrder.toFiveDigits(),
+              order.creationDate.toDate().formatDateCapitalize(),
+              order.client.name,
+              order.status,
+              order.totalValue.formatMoney(),
+              () => Provider.of<OrderProvider>(listen: false, context)
+                  .onSelected(order),
+              colorRow: order.status == 'CANCELADO' ? Colors.red : Colors.black,
+              () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) =>
+                      _buildModal(context, order),
+                );
+              },
+            );
+          },
+        )
+      ],
+      columnWidth: {
+        0: FlexColumnWidth(Utils.widthSize(context) * 0.00015),
+        1: FlexColumnWidth(Utils.widthSize(context) * 0.0004),
+        2: const FlexColumnWidth(),
+        3: FlexColumnWidth(Utils.widthSize(context) * 0.00015),
+        4: FlexColumnWidth(Utils.widthSize(context) * 0.0002),
+      },
+    );
   }
 
   Widget _buildModal(BuildContext context, Order order) {
@@ -101,64 +111,87 @@ class OrderTableWidget extends StatelessWidget {
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: AppTable(rows: [
-                          ...List.generate(
-                            order.itens.length,
-                            (index) {
-                              return TableRow(
-                                decoration: BoxDecoration(
-                                    border: Border(
-                                        bottom:
-                                            BorderSide(color: Styles.base))),
-                                children: [
-                                  TableRowInkWell(
-                                    overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
-                                    onTap: () {},
-                                    child: Text(
-                                      order.itens[index].title,
-                                      style: const TextStyle(fontSize: 13),
-                                    ),
-                                  ),
-                                  TableRowInkWell(
-                                    overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
-                                    onTap: () {},
-                                    child: Center(
-                                      child: Text(
-                                        order.itens[index].quantity.toString(),
-                                        style: const TextStyle(fontSize: 13),
+                        child: AppTable(
+                          columnWidth: {
+                            0: FlexColumnWidth(
+                                Utils.widthSize(context) * 0.0008),
+                            1: FlexColumnWidth(
+                                Utils.widthSize(context) * 0.0002),
+                            2: FlexColumnWidth(
+                              Utils.widthSize(context) * 0.0003,
+                            )
+                          },
+                          rows: [
+                            ...List.generate(
+                              order.itens.length,
+                              (index) {
+                                return TableRow(
+                                  decoration: BoxDecoration(
+                                      border: Border(
+                                          bottom:
+                                              BorderSide(color: Styles.base))),
+                                  children: [
+                                    TableRowInkWell(
+                                      overlayColor:
+                                          WidgetStatePropertyAll<Color>(
+                                              Styles.primary),
+                                      onTap: () {},
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        child: Text(
+                                          order.itens[index].title,
+                                          style: const TextStyle(fontSize: 13),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  TableRowInkWell(
-                                    overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
-                                    onTap: () {},
-                                    child: Center(
-                                      child: Text(
-                                        'R\$ ${order.itens[index].unitValue}',
-                                        style: const TextStyle(fontSize: 13),
+                                    TableRowInkWell(
+                                      overlayColor:
+                                          WidgetStatePropertyAll<Color>(
+                                              Styles.primary),
+                                      onTap: () {},
+                                      child: Center(
+                                        child: Text(
+                                          order.itens[index].quantity
+                                              .toString(),
+                                          style: const TextStyle(fontSize: 13),
+                                        ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              );
-                            },
-                          ),
-                        ], columns: const [
-                          'PRODUTO',
-                          'QNTD',
-                          'VALOR UNIT.'
-                        ]),
+                                    TableRowInkWell(
+                                      overlayColor:
+                                          WidgetStatePropertyAll<Color>(
+                                              Styles.primary),
+                                      onTap: () {},
+                                      child: Center(
+                                        child: Text(
+                                          order.itens[index].unitValue
+                                              .formatMoney(),
+                                          style: const TextStyle(fontSize: 13),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              },
+                            ),
+                          ],
+                          columns: const ['PRODUTO', 'QNTD', 'VALOR UNIT.'],
+                        ),
                       ),
                     ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: AppTable(rows: [
+                        child: AppTable(columnWidth: {
+                          0: FlexColumnWidth(Utils.widthSize(context) * 0.0008),
+                          1: FlexColumnWidth(Utils.widthSize(context) * 0.0002),
+                          2: FlexColumnWidth(
+                            Utils.widthSize(context) * 0.0003,
+                          )
+                        }, rows: [
                           ...List.generate(
-                            listOfOrders.length,
+                            order.payments.length,
                             (index) {
                               return TableRow(
                                 decoration: BoxDecoration(
@@ -194,7 +227,8 @@ class OrderTableWidget extends StatelessWidget {
                                         Styles.primary),
                                     child: Center(
                                       child: Text(
-                                        'R\$ ${order.payments[index].value}',
+                                        order.payments[index].value
+                                            .formatMoney(),
                                         style: const TextStyle(fontSize: 13),
                                       ),
                                     ),
