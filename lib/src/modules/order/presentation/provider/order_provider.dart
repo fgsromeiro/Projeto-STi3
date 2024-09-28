@@ -1,33 +1,41 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
 import 'package:projeto_sti3/src/modules/order/domain/usecases/gell_all_order_use_case.dart';
 import 'package:projeto_sti3/src/modules/order/domain/usecases/sync_order_use_case.dart';
 import 'package:projeto_sti3/src/shared/di/dependency_assembly.dart';
 
+enum OrderState {
+  initial,
+  success,
+  error,
+}
+
 class OrderProvider extends ChangeNotifier {
   final syncOrderUseCase = dependencyAssembly<SyncOrderUseCase>();
   final getAllOrderUseCase = dependencyAssembly<GetAllOrderUseCase>();
 
-  bool _isSyncCompleted = false;
-  String? _errorMessage;
+  OrderState _state = OrderState.initial;
+  bool _wasSynchronized = false;
+  String? _message;
   List<Order> _listOfOrder = [];
+  Order? _orderSelected;
 
-  bool get isRequestCompleted => _isSyncCompleted;
-  String? get errorMessage => _errorMessage;
+  OrderState get state => _state;
+  Order? get orderSelected => _orderSelected;
+  String? get message => _message;
   List<Order> get listOfOrder => _listOfOrder;
+  bool get wasSynchronized => _wasSynchronized;
 
   Future<void> sync() async {
     try {
       await syncOrderUseCase.call();
 
-      _isSyncCompleted = true;
-      _errorMessage = null;
+      _state = OrderState.success;
+      _wasSynchronized = true;
+      _message = 'Pedidos sincronizados com sucesso!';
     } catch (e) {
-      _isSyncCompleted = false;
-      log(e.toString());
-      _errorMessage = 'Erro inesperado: $e';
+      _state = OrderState.error;
+      _message = 'Houve um erro inesperado - $e';
     }
 
     notifyListeners();
@@ -45,21 +53,41 @@ class OrderProvider extends ChangeNotifier {
           .toList();
 
       _listOfOrder = filteredOrders;
-
-      notifyListeners();
-    } catch (e) {}
+    } catch (e) {
+      _state = OrderState.error;
+      _message = 'Houve um erro inesperado - $e';
+    }
+    reset();
+    notifyListeners();
   }
 
   Future<void> getAll() async {
     try {
-      _listOfOrder = await getAllOrderUseCase.call();
-      _listOfOrder.sort(
-        (a, b) => a.numberOrder.compareTo(b.numberOrder),
-      );
+      if (!_wasSynchronized) {
+        _state = OrderState.success;
+        _message = 'Foram encontrados 0 pedidos.';
+      } else {
+        _listOfOrder = await getAllOrderUseCase.call();
+        _listOfOrder.sort(
+          (a, b) => a.numberOrder.compareTo(b.numberOrder),
+        );
+        reset();
+      }
+
+      notifyListeners();
     } catch (e) {
-      log(e.toString());
-      _errorMessage = 'Erro inesperado: $e';
+      _state = OrderState.error;
+      _message = 'Houve um erro inesperado - $e';
     }
+  }
+
+  void onSelected(Order order) {
+    _orderSelected = order;
     notifyListeners();
+  }
+
+  void reset() {
+    _state = OrderState.initial;
+    _message = null;
   }
 }

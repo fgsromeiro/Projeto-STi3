@@ -1,20 +1,23 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
-import 'package:projeto_sti3/src/shared/extensions/parser_extensions_integer.dart';
+import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_datetime.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_double.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_integer.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_string.dart';
 import 'package:projeto_sti3/src/ui/app_table.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:projeto_sti3/src/utils/utils.dart';
+import 'package:provider/provider.dart';
 
 class OrderTableWidget extends StatelessWidget {
   const OrderTableWidget({
     super.key,
     required this.listOfOrders,
-    required this.onTap,
   });
 
   final List<Order> listOfOrders;
-  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +36,12 @@ class OrderTableWidget extends StatelessWidget {
           return Utils.tableRowChild(
             context,
             order.numberOrder.toFiveDigits(),
-            Utils.formatDate(order.creationDate),
+            order.creationDate.toDate().formatDateCapitalize(),
             order.client.name,
             order.status,
-            Utils.formatMoney(order.totalValue),
-            onTap,
+            order.totalValue.formatMoney(),
+            () => Provider.of<OrderProvider>(listen: false, context)
+                .onSelected(order),
             colorRow: order.status == 'CANCELADO' ? Colors.red : Colors.black,
             () {
               showDialog(

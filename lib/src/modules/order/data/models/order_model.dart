@@ -5,7 +5,7 @@ import 'package:projeto_sti3/src/modules/order/data/models/client_model.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/item_model.dart';
 import 'package:projeto_sti3/src/modules/order/data/models/payment_model.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
-import 'package:projeto_sti3/src/shared/extensions/parser_extensions_integer.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_integer.dart';
 
 class OrderModel extends Order {
   const OrderModel({

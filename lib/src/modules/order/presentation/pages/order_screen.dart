@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_details_widget.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_table_widget.dart';
+import 'package:projeto_sti3/src/utils/dialogs.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:provider/provider.dart';
 
@@ -31,24 +32,15 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Consumer<OrderProvider>(
       builder: (context, provider, child) {
-        if (provider.isRequestCompleted) {
+        if (provider.state == OrderState.success) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Requisição concluída com sucesso!'),
-                backgroundColor: Colors.green,
-              ),
-            );
+            Dialogs.showSnackBarMessage(context, message: provider.message!);
           });
-        } else if (!provider.isRequestCompleted &&
-            provider.errorMessage != null) {
+        }
+
+        if (provider.state == OrderState.error) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(provider.errorMessage!),
-                backgroundColor: Colors.red,
-              ),
-            );
+            Dialogs.showSnackBarMessage(context, message: provider.message!);
           });
         }
 
@@ -71,11 +63,12 @@ class _OrderScreenState extends State<OrderScreen> {
                               child: TextFormField(
                                 textCapitalization:
                                     TextCapitalization.sentences,
-                                    onFieldSubmitted: (value) => Provider.of<OrderProvider>(context,
-                                          listen: false)
-                                      .search(
-                                    value,
-                                  ),
+                                onFieldSubmitted: (value) =>
+                                    Provider.of<OrderProvider>(context,
+                                            listen: false)
+                                        .search(
+                                  value,
+                                ),
                                 onTapOutside: (event) =>
                                     FocusScope.of(context).unfocus(),
                                 cursorColor: Styles.primary,
@@ -153,7 +146,6 @@ class _OrderScreenState extends State<OrderScreen> {
                       Expanded(
                         child: OrderTableWidget(
                           listOfOrders: provider.listOfOrder,
-                          onTap: () {},
                         ),
                       )
                     ],
@@ -161,7 +153,12 @@ class _OrderScreenState extends State<OrderScreen> {
               const SizedBox(
                 width: 10,
               ),
-              const Expanded(flex: 2, child: OrderDetailsWidget())
+              Expanded(
+                flex: 2,
+                child: OrderDetailsWidget(
+                  order: provider.orderSelected,
+                ),
+              )
             ],
           ),
         );

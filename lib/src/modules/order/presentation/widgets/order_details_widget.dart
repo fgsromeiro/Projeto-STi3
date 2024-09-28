@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_ructors_first
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_datetime.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_double.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_integer.dart';
+import 'package:projeto_sti3/src/shared/extensions/parser_extension_string.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
@@ -63,19 +67,19 @@ class OrderDetailsWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Número: ${order!.id}',
+                          'Número: ${order!.numberOrder.toFiveDigits()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          'Data Criação: ${order!.creationDate}',
+                          'Data Criação: ${order!.creationDate.toDate().formatShortDate()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          'Data Alteração: ${order!.modificationDate}',
+                          'Data Alteração: ${order!.modificationDate.toDate().formatShortDate()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
@@ -87,25 +91,25 @@ class OrderDetailsWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Desconto: R\$ ${order!.discount}',
+                          'Desconto: ${order!.discount.formatMoney()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          'Frete: R\$ ${order!.freight}',
+                          'Frete: ${order!.freight.formatMoney()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          'SubTotal: R\$ ${order!.subTotal}',
+                          'SubTotal: ${order!.freight.formatMoney()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
                         Text(
-                          'Total: R\$ ${order!.totalValue}',
+                          'Total: ${order!.freight.formatMoney()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),
@@ -139,7 +143,7 @@ class OrderDetailsWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'Data Nascimento: ${order!.client.dateBirth}',
+                          'Data Nascimento: ${order!.client.dateBirth.toDate().formatShortDate()}',
                           style: const TextStyle(
                             fontSize: 12,
                           ),

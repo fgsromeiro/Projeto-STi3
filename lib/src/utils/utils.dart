@@ -8,23 +8,9 @@ class Utils {
   static double widthSize(BuildContext context) =>
       MediaQuery.of(context).size.width;
 
-  static String formatMoney(double value) {
-    final NumberFormat formatter =
-        NumberFormat.currency(locale: 'pt_BR', symbol: 'R\$');
-    return formatter.format(value);
-  }
+  
 
-  static String formatDate(String dateStr) {
-    DateTime date = DateTime.parse(dateStr);
-
-    String formattedDate =
-        DateFormat('EEEE, dd MMMM yyyy', 'pt_BR').format(date);
-
-    String capitalizedDate =
-        "${formattedDate[0].toUpperCase()}${formattedDate.substring(1)}";
-
-    return capitalizedDate;
-  }
+  
 
   static TableRow tableRowChild(
       BuildContext context,
