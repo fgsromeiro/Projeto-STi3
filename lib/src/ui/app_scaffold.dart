@@ -17,26 +17,25 @@ class AppScaffold extends StatefulWidget {
 }
 
 class _AppScaffoldState extends State<AppScaffold> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Styles.secondary,
+      backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        backgroundColor: Styles.primary,
+        backgroundColor: AppColors.primary,
         iconTheme: IconThemeData(
-          color: Styles.tertiary,
+          color: AppColors.tertiary,
         ),
         title: Text(
           widget.title,
-          style: TextStyle(color: Styles.tertiary),
+          style: TextStyle(color: AppColors.tertiary),
         ),
       ),
       drawer: SizedBox(
         width: 200,
         child: Drawer(
           shape: const BeveledRectangleBorder(),
-          surfaceTintColor: Styles.tertiary,
+          surfaceTintColor: AppColors.tertiary,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
@@ -61,7 +60,7 @@ class _AppScaffoldState extends State<AppScaffold> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Scaffold(
-          backgroundColor: Styles.tertiary,
+          backgroundColor: AppColors.tertiary,
           body: widget.child,
         ),
       ),

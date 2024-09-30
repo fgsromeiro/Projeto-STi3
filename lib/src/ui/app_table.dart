@@ -17,7 +17,7 @@ class AppTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(border: Border.all(color: Styles.base)),
+      decoration: BoxDecoration(border: Border.all(color: AppColors.base)),
       child: Table(
         columnWidths: columnWidth,
         children: [
@@ -35,8 +35,8 @@ class AppTable extends StatelessWidget {
 
   Widget _tableCell(String value, {bool isHeader = false}) {
     return Container(
-      decoration:
-          BoxDecoration(border: Border(right: BorderSide(color: Styles.base))),
+      decoration: BoxDecoration(
+          border: Border(right: BorderSide(color: AppColors.base))),
       child: Center(
         child: Text(
           value,
@@ -55,8 +55,8 @@ class AppTable extends StatelessWidget {
     List<String> columns,
   ) {
     return TableRow(
-      decoration:
-          BoxDecoration(border: Border(bottom: BorderSide(color: Styles.base))),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.base))),
       children: [
         ...List.generate(
           length - 1,

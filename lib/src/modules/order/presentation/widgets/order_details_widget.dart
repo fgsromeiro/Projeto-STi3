@@ -27,17 +27,17 @@ class OrderDetailsWidget extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              border: Border.all(color: Styles.primary),
+              border: Border.all(color: AppColors.primary),
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(5), topRight: Radius.circular(5)),
-              color: Styles.primary,
+              color: AppColors.primary,
             ),
             alignment: Alignment.center,
             height: 30,
             width: double.infinity,
             child: Text(
               'Detalhes do Pedido',
-              style: TextStyle(color: Styles.tertiary, fontSize: 13),
+              style: TextStyle(color: AppColors.tertiary, fontSize: 13),
             ),
           ),
           if (order == null)
@@ -63,7 +63,7 @@ class OrderDetailsWidget extends StatelessWidget {
                           'Informações do Pedido',
                           style: TextStyle(
                             fontSize: 15,
-                            color: Styles.primary,
+                            color: AppColors.primary,
                           ),
                         ),
                         Text(
@@ -127,7 +127,7 @@ class OrderDetailsWidget extends StatelessWidget {
                           'Dados do Cliente',
                           style: TextStyle(
                             fontSize: 15,
-                            color: Styles.primary,
+                            color: AppColors.primary,
                           ),
                         ),
                         Text(
@@ -167,7 +167,7 @@ class OrderDetailsWidget extends StatelessWidget {
                           'Local de Entrega',
                           style: TextStyle(
                             fontSize: 15,
-                            color: Styles.primary,
+                            color: AppColors.primary,
                           ),
                         ),
                         Text(

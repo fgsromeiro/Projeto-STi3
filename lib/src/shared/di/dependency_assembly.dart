@@ -6,6 +6,8 @@ import 'package:projeto_sti3/src/modules/order/data/repositories/order_repositor
 import 'package:projeto_sti3/src/modules/order/domain/repositories/order_repository.dart';
 import 'package:projeto_sti3/src/modules/order/domain/usecases/gell_all_order_use_case.dart';
 import 'package:projeto_sti3/src/modules/order/domain/usecases/sync_order_use_case.dart';
+import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
+import 'package:projeto_sti3/src/modules/report/presentation/provider/report_provider.dart';
 import 'package:projeto_sti3/src/shared/domain/http_client.dart';
 import 'package:projeto_sti3/src/shared/domain/network_info_impl.dart';
 import 'package:projeto_sti3/src/shared/hive/hive_service_impl.dart';
@@ -19,6 +21,10 @@ Future<void> setupDependencyAssembly() async {
   dependencyAssembly
     ..registerLazySingleton<http.Client>(
       http.Client.new,
+    )
+    
+    ..registerLazySingleton<ReportProvider>(
+      ReportProvider.new,
     )
     ..registerLazySingleton<NetworkInfo>(
       NetworkInfoImpl.new,
@@ -38,6 +44,10 @@ Future<void> setupDependencyAssembly() async {
 
 void _setupModuleOrder() {
   dependencyAssembly
+    ..registerLazySingleton<OrderProvider>(
+      OrderProvider.new,
+    )
+
     ..registerLazySingleton<SyncOrderUseCase>(
       () => SyncOrderUseCase(repository: dependencyAssembly()),
     )

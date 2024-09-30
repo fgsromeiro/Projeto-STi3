@@ -84,13 +84,14 @@ class OrderTableWidget extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   height: 30,
-                  color: Styles.primary,
+                  color: AppColors.primary,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         'DETALHES DO PEDIDO',
-                        style: TextStyle(fontSize: 13, color: Styles.tertiary),
+                        style:
+                            TextStyle(fontSize: 13, color: AppColors.tertiary),
                       ),
                       IconButton(
                         style:
@@ -98,7 +99,7 @@ class OrderTableWidget extends StatelessWidget {
                         onPressed: () => Navigator.pop(context),
                         icon: Icon(
                           Icons.close,
-                          color: Styles.tertiary,
+                          color: AppColors.tertiary,
                         ),
                       )
                     ],
@@ -128,13 +129,13 @@ class OrderTableWidget extends StatelessWidget {
                                 return TableRow(
                                   decoration: BoxDecoration(
                                       border: Border(
-                                          bottom:
-                                              BorderSide(color: Styles.base))),
+                                          bottom: BorderSide(
+                                              color: AppColors.base))),
                                   children: [
                                     TableRowInkWell(
                                       overlayColor:
                                           WidgetStatePropertyAll<Color>(
-                                              Styles.primary),
+                                              AppColors.primary),
                                       onTap: () {},
                                       child: Padding(
                                         padding: const EdgeInsets.symmetric(
@@ -148,7 +149,7 @@ class OrderTableWidget extends StatelessWidget {
                                     TableRowInkWell(
                                       overlayColor:
                                           WidgetStatePropertyAll<Color>(
-                                              Styles.primary),
+                                              AppColors.primary),
                                       onTap: () {},
                                       child: Center(
                                         child: Text(
@@ -161,7 +162,7 @@ class OrderTableWidget extends StatelessWidget {
                                     TableRowInkWell(
                                       overlayColor:
                                           WidgetStatePropertyAll<Color>(
-                                              Styles.primary),
+                                              AppColors.primary),
                                       onTap: () {},
                                       child: Center(
                                         child: Text(
@@ -197,11 +198,11 @@ class OrderTableWidget extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     border: Border(
                                         bottom:
-                                            BorderSide(color: Styles.base))),
+                                            BorderSide(color: AppColors.base))),
                                 children: [
                                   TableRowInkWell(
                                     overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
+                                        AppColors.primary),
                                     onTap: () {},
                                     child: Center(
                                       child: Text(
@@ -212,7 +213,7 @@ class OrderTableWidget extends StatelessWidget {
                                   ),
                                   TableRowInkWell(
                                     overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
+                                        AppColors.primary),
                                     child: Center(
                                       child: Text(
                                         order
@@ -224,7 +225,7 @@ class OrderTableWidget extends StatelessWidget {
                                   ),
                                   TableRowInkWell(
                                     overlayColor: WidgetStatePropertyAll<Color>(
-                                        Styles.primary),
+                                        AppColors.primary),
                                     child: Center(
                                       child: Text(
                                         order.payments[index].value

@@ -71,7 +71,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 ),
                                 onTapOutside: (event) =>
                                     FocusScope.of(context).unfocus(),
-                                cursorColor: Styles.primary,
+                                cursorColor: AppColors.primary,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 cursorHeight: 13,
@@ -88,7 +88,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                   fillColor: Colors.transparent,
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
-                                        color: Styles.primary, width: 1),
+                                        color: AppColors.primary, width: 1),
                                   ),
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -106,7 +106,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
-                                    backgroundColor: Styles.primary),
+                                    backgroundColor: AppColors.primary),
                                 onPressed: () {
                                   Provider.of<OrderProvider>(context,
                                           listen: false)
@@ -117,7 +117,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 child: Text(
                                   'Pesquisar',
                                   style: TextStyle(
-                                      fontSize: 13, color: Styles.tertiary),
+                                      fontSize: 13, color: AppColors.tertiary),
                                 )),
                             const SizedBox(
                               width: 5,
@@ -126,7 +126,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5)),
-                                    backgroundColor: Styles.primary),
+                                    backgroundColor: AppColors.primary),
                                 onPressed: () {
                                   Provider.of<OrderProvider>(context,
                                           listen: false)
@@ -135,7 +135,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 child: Text(
                                   'Sincronizar',
                                   style: TextStyle(
-                                      fontSize: 13, color: Styles.tertiary),
+                                      fontSize: 13, color: AppColors.tertiary),
                                 )),
                           ],
                         ),

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/pages/order_screen.dart';
+import 'package:projeto_sti3/src/modules/report/presentation/pages/report_screen.dart';
+import 'package:projeto_sti3/src/modules/report/presentation/provider/report_provider.dart';
+import 'package:projeto_sti3/src/shared/di/dependency_assembly.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,19 +21,24 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
       title = _titles[index];
     });
+
+    if (_selectedIndex == 2) {
+      final reportProvider = dependencyAssembly<ReportProvider>();
+      reportProvider.load();
+    }
   }
 
   final List<Widget> _pages = [
-    // Center(
-    //   child: Opacity(
-    //     opacity: 0.5,
-    //     child: Image.asset(
-    //       'assets/images/logo.png',
-    //     ),
-    //   ),
-    // ),
+    Center(
+      child: Opacity(
+        opacity: 0.5,
+        child: Image.asset(
+          'assets/images/logo.png',
+        ),
+      ),
+    ),
     const OrderScreen(),
-    // const ReportScreen(),
+    const ReportScreen(),
   ];
 
   final List<String> _titles = [
@@ -42,22 +50,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Styles.secondary,
+      backgroundColor: AppColors.secondary,
       appBar: AppBar(
-        backgroundColor: Styles.primary,
+        backgroundColor: AppColors.primary,
         iconTheme: IconThemeData(
-          color: Styles.tertiary,
+          color: AppColors.tertiary,
         ),
         title: Text(
           title,
-          style: TextStyle(color: Styles.tertiary),
+          style: TextStyle(color: AppColors.tertiary),
         ),
       ),
       drawer: SizedBox(
         width: 200,
         child: Drawer(
           shape: const BeveledRectangleBorder(),
-          surfaceTintColor: Styles.tertiary,
+          surfaceTintColor: AppColors.tertiary,
           child: ListView(
             padding: EdgeInsets.zero,
             children: <Widget>[
@@ -84,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Scaffold(
-          backgroundColor: Styles.tertiary,
+          backgroundColor: AppColors.tertiary,
           body: IndexedStack(
             index: _selectedIndex,
             children: _pages,

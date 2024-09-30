@@ -3,6 +3,8 @@ import 'package:projeto_sti3/src/modules/home/presentation/pages/home_screen.dar
 import 'package:projeto_sti3/src/modules/order/presentation/pages/order_screen.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
 import 'package:projeto_sti3/src/modules/report/presentation/pages/report_screen.dart';
+import 'package:projeto_sti3/src/modules/report/presentation/provider/report_provider.dart';
+import 'package:projeto_sti3/src/shared/di/dependency_assembly.dart';
 import 'package:provider/provider.dart';
 
 class App extends StatelessWidget {
@@ -14,7 +16,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create:(context) =>  OrderProvider(),)
+        ChangeNotifierProvider(create:(context) =>  dependencyAssembly<OrderProvider>(),),
+        ChangeNotifierProvider(create:(context) =>  dependencyAssembly<ReportProvider>(),),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 
 class Utils {
@@ -7,10 +6,6 @@ class Utils {
       MediaQuery.of(context).size.height;
   static double widthSize(BuildContext context) =>
       MediaQuery.of(context).size.width;
-
-  
-
-  
 
   static TableRow tableRowChild(
       BuildContext context,
@@ -23,11 +18,11 @@ class Utils {
       VoidCallback? onDoubleTap,
       {Color colorRow = Colors.black}) {
     return TableRow(
-      decoration:
-          BoxDecoration(border: Border(bottom: BorderSide(color: Styles.base))),
+      decoration: BoxDecoration(
+          border: Border(bottom: BorderSide(color: AppColors.base))),
       children: [
         TableRowInkWell(
-          overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
+          overlayColor: WidgetStatePropertyAll<Color>(AppColors.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           child: Center(
@@ -41,7 +36,7 @@ class Utils {
           ),
         ),
         TableRowInkWell(
-          overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
+          overlayColor: WidgetStatePropertyAll<Color>(AppColors.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           child: Padding(
@@ -56,7 +51,7 @@ class Utils {
           ),
         ),
         TableRowInkWell(
-          overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
+          overlayColor: WidgetStatePropertyAll<Color>(AppColors.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           child: Padding(
@@ -71,7 +66,7 @@ class Utils {
           ),
         ),
         TableRowInkWell(
-          overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
+          overlayColor: WidgetStatePropertyAll<Color>(AppColors.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           child: Center(
@@ -85,7 +80,7 @@ class Utils {
           ),
         ),
         TableRowInkWell(
-          overlayColor: WidgetStatePropertyAll<Color>(Styles.primary),
+          overlayColor: WidgetStatePropertyAll<Color>(AppColors.primary),
           onTap: onTap,
           onDoubleTap: onDoubleTap,
           child: Center(

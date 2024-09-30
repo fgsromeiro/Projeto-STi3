@@ -33,12 +33,12 @@ class OrderProvider extends ChangeNotifier {
       _state = OrderState.success;
       _wasSynchronized = true;
       _message = 'Pedidos sincronizados com sucesso!';
+      notifyListeners();
     } catch (e) {
       _state = OrderState.error;
       _message = 'Houve um erro inesperado - $e';
     }
-
-    notifyListeners();
+    _listOfOrder = await getAllOrderUseCase.call();
   }
 
   Future<void> search(String text) async {

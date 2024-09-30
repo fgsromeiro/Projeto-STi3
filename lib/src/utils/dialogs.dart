@@ -16,7 +16,7 @@ class Dialogs {
                 message,
                 style: TextStyle(
                   fontSize: 13,
-                  color: Styles.tertiary,
+                  color: AppColors.tertiary,
                 ),
               ),
             ),
@@ -29,13 +29,13 @@ class Dialogs {
                 'FECHAR X',
                 style: TextStyle(
                   fontSize: 13,
-                  color: Styles.tertiary,
+                  color: AppColors.tertiary,
                 ),
               ))
         ],
       ),
       duration: const Duration(seconds: 5),
-      backgroundColor: Styles.primary,
+      backgroundColor: AppColors.primary,
       margin: EdgeInsets.symmetric(
         horizontal: Utils.widthSize(context) * 0.03,
         vertical: Utils.widthSize(context) * 0.01,
