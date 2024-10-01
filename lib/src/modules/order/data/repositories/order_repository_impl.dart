@@ -3,6 +3,7 @@ import 'package:projeto_sti3/src/modules/order/data/datasources/order_local_data
 import 'package:projeto_sti3/src/modules/order/data/datasources/order_remote_data_source.dart';
 import 'package:projeto_sti3/src/modules/order/domain/entities/order.dart';
 import 'package:projeto_sti3/src/modules/order/domain/repositories/order_repository.dart';
+import 'package:projeto_sti3/src/shared/interface/base_exception.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final OrderLocalDataSource localDataSource;
@@ -15,11 +16,15 @@ class OrderRepositoryImpl implements OrderRepository {
 
   @override
   Future<void> sync() async {
-    final result = await remoteDataSource.getAll();
+    try {
+      final result = await remoteDataSource.getAll();
 
-    await _addLocal(result);
+      await _addLocal(result);
 
-    return;
+      return;
+    } on BaseException {
+      rethrow;
+    }
   }
 
   Future<void> _addLocal(List<Order> listOfOrders) async {
