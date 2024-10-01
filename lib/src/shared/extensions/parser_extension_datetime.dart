@@ -17,4 +17,23 @@ extension ParserExtensionDatetime on DateTime {
 
     return capitalizedDate;
   }
+
+  String calculateAge() {
+    DateTime dataAtual = DateTime.now();
+
+    int idade = dataAtual.year - year;
+
+    if (dataAtual.month < month ||
+        (dataAtual.month == month && dataAtual.day < day)) {
+      idade--;
+    }
+
+    if (idade <= 20) {
+      return 'Até 20 anos';
+    } else if (idade <= 30) {
+      return '20-30 anos';
+    } else {
+      return 'Acima de 30 anos';
+    }
+  }
 }

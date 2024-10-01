@@ -7,6 +7,8 @@ class Utils {
   static double widthSize(BuildContext context) =>
       MediaQuery.of(context).size.width;
 
+  
+
   static TableRow tableRowChild(
       BuildContext context,
       String id,
