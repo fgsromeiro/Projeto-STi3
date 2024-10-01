@@ -14,14 +14,14 @@
 <h2 id="demo">📱Demontração</h2>
 
 <p align="center">
-    <img src="assets/demo.gif" alt="Image Example" height="400px">
+    <img src="assets/images/demo.gif" alt="Image Example" height="400px">
 </p>
 
 <h2 id="tech">💻 Tecnologias</h2>
 
-- Flutter 3.22.1
-- Dart 3.4.1
-- SQLite
+- Flutter 3.24.3
+- Dart 3.5.3
+- Hive
 
 <h2 id="start">🎖️ Iniciando</h2>
 
