@@ -14,10 +14,11 @@
 <h2 id="demo">📱Demontração</h2>
 
 <p align="center">
-    <video width="640" height="360" controls>
-  <source src="https://firebasestorage.googleapis.com/v0/b/projeto-sti3-97c08.appspot.com/o/demonstracao.mp4?alt=media&token=e067e56d-40ac-4f1d-ae8a-821ec30d1f0e" type="video/mp4">
-  
-</video>
+    <a href="https://firebasestorage.googleapis.com/v0/b/projeto-sti3-97c08.appspot.com/o/demonstracao.mp4?alt=media&token=e067e56d-40ac-4f1d-ae8a-821ec30d1f0e" target="_blank">
+  <button style="background-color: blue; color: white; border: 2px solid black; padding: 10px 20px; cursor: pointer;">
+    Ver demontração
+  </button>
+</a>
 
 </p>
 
