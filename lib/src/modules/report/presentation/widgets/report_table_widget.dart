@@ -8,7 +8,7 @@ import 'package:projeto_sti3/src/shared/extensions/parser_extension_datetime.dar
 import 'package:projeto_sti3/src/shared/extensions/parser_extension_double.dart';
 import 'package:projeto_sti3/src/shared/extensions/parser_extension_string.dart';
 import 'package:projeto_sti3/src/ui/app_table.dart';
-import 'package:projeto_sti3/src/utils/dialogs.dart';
+import 'package:projeto_sti3/src/ui/dialogs.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:provider/provider.dart';
 

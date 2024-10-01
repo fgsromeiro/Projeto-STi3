@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/provider/order_provider.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_details_widget.dart';
 import 'package:projeto_sti3/src/modules/order/presentation/widgets/order_table_widget.dart';
-import 'package:projeto_sti3/src/utils/dialogs.dart';
+import 'package:projeto_sti3/src/ui/dialogs.dart';
 import 'package:projeto_sti3/src/utils/styles.dart';
 import 'package:provider/provider.dart';
 
